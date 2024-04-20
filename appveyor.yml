@@ -9,7 +9,7 @@ install:
   - cmd: git clone https://github.com/microsoft/vcpkg.git
   - cmd: cd vcpkg
   - cmd: bootstrap-vcpkg.bat
-  - cmd: vcpkg install libjpeg-turbo libpng benchmark devil stb --triplet x64-windows
+  - cmd: vcpkg install sail libjpeg-turbo libpng benchmark devil stb --triplet x64-windows
   - cmd: cd..
 
 build_script:
