@@ -6,16 +6,19 @@ platform:
 
 install:
   - cmd: echo "sail-benchmark"
+  - cmd: cd..
   - cmd: git clone https://github.com/microsoft/vcpkg.git
   - cmd: cd vcpkg
   - cmd: bootstrap-vcpkg.bat
+  - cmd: vcpkg install sail
   - cmd: vcpkg install sail libjpeg-turbo libpng benchmark devil stb --triplet x64-windows
   - cmd: cd..
+  - cmd: cd sail-benchmark
 
 build_script:
   - cmd: md build
   - cmd: cd build
-  - cmd: cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:\projects\sail-benchmark\vcpkg\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:\projects\vcpkg\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release ..
   - cmd: cmake --build . --config Release
 
 test_script:
