@@ -1,0 +1,22 @@
+version: 1.0.{build}
+image: Visual Studio 2019
+
+platform:
+  - x64
+
+install:
+  - cmd: echo "sail-benchmark"
+  - cmd: git clone https://github.com/microsoft/vcpkg.git
+  - cmd: cd vcpkg
+  - cmd: bootstrap-vcpkg.bat
+  - cmd: vcpkg install libjpeg-turbo libpng benchmark devil stb --triplet x64-windows
+  - cmd: cd..
+
+build_script:
+  - cmd: md build
+  - cmd: cd build
+  - cmd: cmake -A x64 -DCMAKE_TOOLCHAIN_FILE=C:\projects\sail-benchmark\vcpkg\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release ..
+  - cmd: cmake --build . --config Release
+
+test_script:
+  - cmd: C:\projects\sail-benchmark\run-all.sh
