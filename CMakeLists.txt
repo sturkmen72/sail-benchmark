@@ -53,14 +53,6 @@ add_benchmark_skeleton(sail-benchmark-sail)
 
 target_link_libraries(sail-benchmark-sail SAIL::sail SAIL::sail-manip)
 
-# STB
-#
-find_path(STB_INCLUDE_DIRS "stb.h")
-
-add_benchmark_skeleton(sail-benchmark-stb)
-
-target_include_directories(sail-benchmark-stb PRIVATE ${STB_INCLUDE_DIRS})
-
 # WIC
 #
 add_benchmark_skeleton(sail-benchmark-wic)
