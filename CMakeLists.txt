@@ -38,54 +38,11 @@ add_definitions(-DBENCHMARK_UNIT=benchmark::kMicrosecond)
 # Benchmarks
 #
 
-# CImg
-#
-find_package(JPEG REQUIRED)
-find_package(libpng CONFIG REQUIRED)
-find_package(CImg CONFIG REQUIRED)
-
-add_benchmark_skeleton(sail-benchmark-cimg)
-
-target_include_directories(sail-benchmark-cimg PRIVATE ${JPEG_INCLUDE_DIR})
-target_link_libraries(sail-benchmark-cimg ${JPEG_LIBRARIES})
-target_link_libraries(sail-benchmark-cimg png)
-
-target_link_libraries(sail-benchmark-cimg CImg::CImg)
-
 # DevIL
 #
 pkg_check_modules(IL IMPORTED_TARGET REQUIRED DevIL)
 add_benchmark_skeleton(sail-benchmark-devil)
 target_link_libraries(sail-benchmark-devil PkgConfig::IL)
-
-# FreeImage
-#
-find_package(freeimage CONFIG REQUIRED)
-
-add_benchmark_skeleton(sail-benchmark-freeimage)
-target_link_libraries(sail-benchmark-freeimage freeimage::FreeImage)
-
-# GIL
-#
-find_package(Boost REQUIRED)
-find_package(JPEG REQUIRED)
-find_package(libpng CONFIG REQUIRED)
-
-add_benchmark_skeleton(sail-benchmark-gil)
-
-target_include_directories(sail-benchmark-gil PRIVATE ${JPEG_INCLUDE_DIR})
-target_link_libraries(sail-benchmark-gil ${JPEG_LIBRARIES})
-target_link_libraries(sail-benchmark-gil png)
-
-target_link_libraries(sail-benchmark-gil Boost::boost)
-
-# OpenImageIO
-#
-find_package(OpenImageIO CONFIG REQUIRED)
-
-add_benchmark_skeleton(sail-benchmark-openimageio)
-
-target_link_libraries(sail-benchmark-openimageio OpenImageIO::OpenImageIO OpenImageIO::OpenImageIO_Util)
 
 # SAIL
 #
@@ -95,15 +52,6 @@ find_package(SailManip REQUIRED)
 add_benchmark_skeleton(sail-benchmark-sail)
 
 target_link_libraries(sail-benchmark-sail SAIL::sail SAIL::sail-manip)
-
-# SDL
-#
-find_package(sdl2 CONFIG REQUIRED)
-find_package(sdl2-image CONFIG REQUIRED)
-
-add_benchmark_skeleton(sail-benchmark-sdl)
-
-target_link_libraries(sail-benchmark-sdl SDL2::SDL2_image)
 
 # STB
 #
