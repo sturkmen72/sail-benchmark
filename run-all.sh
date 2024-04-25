@@ -47,7 +47,7 @@ for image in $images; do
 
     for test in $tests; do
         echo "Running $test/$image..."
-
+        build/${test}/Release/${test} --benchmark_repetitions=$repetitions --benchmark_filter="$image"
         # Take the mean time
         build/${test}/Release/${test} --benchmark_repetitions=$repetitions --benchmark_filter="$image" 2>/dev/null | \
             grep _mean | sed "s|BM_||;s|/${image}_mean||" | awk '{print $1 " " $2}' >> ${result}.tmp || true # SDL test returns 2 from SDL_Main
